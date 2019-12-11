@@ -30,7 +30,7 @@ def inverse_functions_method(N):
     for x in theor_x1:
         theor_y1.append(f_x)
         theor_Fx1.append(f_x * (x - a))
-#   расчет теоретических и экспериментальных мат ожиданий и дисперсий !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#   нахождение теоретических и расчетных мат ожиданий и дисперсий !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     sum = 0
     sum1 = 0
     for x in x1:    # находим расчетное мат ожидание
@@ -51,7 +51,7 @@ def Rayleigh_distribution(N):
     try:
         sigma,a, b = input('для распределения Релея методом Неймана\n'
                             'введите ср. кв. отклонения и отрезок [a,b]\n'
-                            'если плотность принимает MAX в точке x = sigma\n'
+                            'sigma ∈ [a, b]; f(x)=max\n, x=sigma'
                             'sigma, a, b = ').split(', ')
         sigma, a, b = float(sigma), float(a), float(b)
     except Exception:
