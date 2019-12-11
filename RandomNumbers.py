@@ -48,10 +48,11 @@ def inverse_functions_method(N):
 # распределение Релея методом Неймана!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 def Rayleigh_distribution(N):
     try:
-        a, b, sigma = input('введите значение ср. кв. отклонения\n'
-                      'для распределения Релея методом Неймана\n'
-                      'sigma = ').split(', ')
-        a, b, sigma = float(a), float(b), float(sigma)
+        sigma,a, b = input('для распределения Релея методом Неймана\n'
+                            'введите ср. кв. отклонения и отрезок [a,b]\n'
+                            'если плотность принимает MAX в точке x = sigma\n'
+                            'sigma, a, b = ').split(', ')
+        sigma, a, b = float(sigma), float(a), float(b)
     except Exception:
         print('Возможно вы ввелин что-то не так')
     M = 1 / math.e ** ((sigma ** 2) / 2)
@@ -71,7 +72,6 @@ def Rayleigh_distribution(N):
         if y < g:
             x2.append(xj)
             i += 1
-            print('hi')
         else:
             i += 0
     x2.sort()
