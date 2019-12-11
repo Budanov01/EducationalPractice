@@ -48,36 +48,39 @@ def inverse_functions_method(N):
 # распределение Релея методом Неймана!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 def Rayleigh_distribution(N):
     try:
-        sigma = input('введите значение ср. кв. отклонения\n'
+        a, b, sigma = input('введите значение ср. кв. отклонения\n'
                       'для распределения Релея методом Неймана\n'
-                      'sigma = ')
-        sigma = float(sigma)
+                      'sigma = ').split(', ')
+        a, b, sigma = float(a), float(b), float(sigma)
     except Exception:
         print('Возможно вы ввелин что-то не так')
-
-    M = 1 / (math.sqrt(math.e) * sigma)
+    M = 1 / math.e ** ((sigma ** 2) / 2)
     x2 = []
     theor_x2 = []
     theor_y2 = []
     theor_Fx2 = []
 
-    for i in range(N):
-        r = random.random()
-        y = r * M
-        xj = sigma * math.sqrt(-2 * math.log(r))
-        g = xj * math.e ** ((-xj ** 2) / (2 * sigma ** 2))
+    i = 1
+    sig = sigma ** 2
+    while i <= N:
+        r1 = random.random()
+        r2 = random.random()
+        y = r2 * M
+        xj = a + (b - a) * r1
+        g = (xj / sig) * math.e ** ((-1 * xj ** 2) / (2 * sigma ** 2))
         if y < g:
             x2.append(xj)
+            i += 1
+            print('hi')
+        else:
+            i += 0
     x2.sort()
 
-    a = x2[0]
-    b = x2[-1]
     left = a
     dx = (b - a) / 1000
     while left <= b:
         theor_x2.append(left)
         left += dx
-    sig = sigma ** 2
     for x in theor_x2:
         theor_y2.append((x / sig) * math.e ** ((-1 * x ** 2) / (2 * sig)))
         theor_Fx2.append(1 - math.e ** ((-1 * x ** 2) / (2 * sig)))
@@ -147,7 +150,7 @@ def Gaussian_distribution(N):
     return x3, exp_m_x, exp_dispersion, m, sig, theor_x3, theor_y3
 
 
-# функция для расчета теоретической функции распределения
+# функция для сборки расчетной функции распределения
 def histogram(x, K, N):
     intervals = []
     hit = []
