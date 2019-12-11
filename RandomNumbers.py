@@ -147,7 +147,7 @@ def Gaussian_distribution(N):
     return x3, exp_m_x, exp_dispersion, m, sig, theor_x3, theor_y3
 
 
-# функция для расчета теоретической функции распределения
+# функция для сборки расчетной функции распределения
 def histogram(x, K, N):
     intervals = []
     hit = []
