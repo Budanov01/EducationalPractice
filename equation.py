@@ -154,50 +154,55 @@ def newton_method(num, N, epsilon, x0, coef_a, coef_b, coef_c=0):
     return xn1, z
 
 
-a, b, c = 0, 0, 0
-left, right = 0, 0
-epsilon, iteration = input('Введите погрешность и максимальное число итераций epsilon, N = ').split(', ')
-epsilon, iteration = float(epsilon), int(iteration)
-num = int(input('Выберите уравнение\n'
-                '1) ae^(-bx)-x=0\n'
-                '2) lg(ax)-bx+c=0\n'
-                '3) x2^x=1\n'
-                '4) 3x+cos(x)+1=0\n'
-                '№ = '))
-if num == 1:
-    a, b = input('Введите коэффициенты a, b = ').split(', ')
-    a, b = float(a), float(b)
-    left, right = input('Введите отрезок на котором искать корни alpha, betta = ').split(', ')
-    left, right = float(left), float(right)
-if num == 2:
-    a, b, c = input('Введите коэффициенты a, b, c = ').split(', ')
-    a, b, c = float(a), float(b), float(c)
-    left, right = input('Введите отрезок на котором искать корни alpha, betta = ').split(', ')
-    left, right = float(left), float(right)
-if num == 3:
-    left, right = input('Введите отрезок на котором искать корни alpha, betta = ').split(', ')
-    left, right = float(left), float(right)
-if num == 4:
-    left, right = input('Введите отрезок на котором искать корни (в градусах) alpha, betta = ').split(', ')
-    left, right = math.radians(float(left)), math.radians(float(right))
 
-left1 = left
-xxx = []
-delx = 0.01
-while left1 < right:
-    xxx.append(left1)
-    left1 += delx
-xxx.append(right)
+try:
+    a, b, c = 0, 0, 0
+    left, right = 0, 0
+    epsilon, iteration = input('Введите погрешность и максимальное число итераций epsilon, N = ').split(', ')
+    epsilon, iteration = float(epsilon), int(iteration)
+    num = int(input('Выберите уравнение\n'
+                    '1) ae^(-bx)-x=0\n'
+                    '2) lg(ax)-bx+c=0\n'
+                    '3) x2^x=1\n'
+                    '4) 3x+cos(x)+1=0\n'
+                    '№ = '))
+    if num == 1:
+        a, b = input('Введите коэффициенты a, b = ').split(', ')
+        a, b = float(a), float(b)
+        left, right = input('Введите отрезок на котором искать корни alpha, betta = ').split(', ')
+        left, right = float(left), float(right)
+    if num == 2:
+        a, b, c = input('Введите коэффициенты a, b, c = ').split(', ')
+        a, b, c = float(a), float(b), float(c)
+        left, right = input('Введите отрезок на котором искать корни alpha, betta = ').split(', ')
+        left, right = float(left), float(right)
+    if num == 3:
+        left, right = input('Введите отрезок на котором искать корни alpha, betta = ').split(', ')
+        left, right = float(left), float(right)
+    if num == 4:
+        left, right = input('Введите отрезок на котором искать корни (в градусах) alpha, betta = ').split(', ')
+        left, right = math.radians(float(left)), math.radians(float(right))
 
-sec = localization(num, left, right, a, b, c)
-plotting(num, xxx, a, b, c)
-if len(sec) == 0:
-    print('Извините, но на этом отрезке нет корней.')
-    sys.exit()
-print('функция имеет корни в этих интервалах ')
-print(sec)
-x0 = float(input('Введите приближеное значение x0 = '))
-root, num_iteration = newton_method(num, iteration, epsilon, x0, a, b, c)
-y, d = function(num, root, a, b, c)
-print('В ходе поиска корня было выполнено '+str(num_iteration)+' итераций')
-print('Значение корня = '+str(root)+'\nЗначение функции = '+str(round(y, 8)))
+    left1 = left
+    xxx = []
+    delx = 0.01
+    while left1 < right:
+        xxx.append(left1)
+        left1 += delx
+    xxx.append(right)
+
+    sec = localization(num, left, right, a, b, c)
+    plotting(num, xxx, a, b, c)
+    if len(sec) == 0:
+        print('Извините, но на этом отрезке нет корней.')
+        sys.exit()
+    print('функция имеет корни в этих интервалах ')
+    print(sec)
+    x0 = float(input('Введите приближеное значение x0 = '))
+    root, num_iteration = newton_method(num, iteration, epsilon, x0, a, b, c)
+    y, d = function(num, root, a, b, c)
+    print('В ходе поиска корня было выполнено '+str(num_iteration)+' итераций')
+    print('Значение корня = '+str(root)+'\nЗначение функции = '+str(round(y, 8)))
+
+except Exception:
+    print('В следующий раз будте внимательны при вводе данных')
