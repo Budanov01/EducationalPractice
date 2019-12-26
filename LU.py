@@ -69,7 +69,8 @@ while i >= 0:
     matrix_b[i] = matrix_b[i] - sum5
     i -= 1
 
+print('После LU-факторизации получилась матрица A')
 for z in matrix_a:
     print(z)
 
-print(matrix_b)
+print('Корни уравнения X = '+str(matrix_b))
