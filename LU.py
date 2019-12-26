@@ -47,14 +47,13 @@ matrix_a[n][n] = matrix_a[n][n] - sum3
 
 # Представляем A*X=B в виде L*U*X=B
 # Прямая подстановка (подстановка U*X=z и решение матрицы L*z=B)
-
-n = len(matrix_b) - 1
 matrix_b[0] = matrix_b[0] / matrix_a[0][0]
 i = 1
 while i <= n:
     j = 0
     sum4 = 0
-    while j <= i - 1:
+    z = i - 1
+    while j <= z:
         sum4 += matrix_a[i][j] * matrix_b[j]
         j += 1
     matrix_b[i] = (matrix_b[i] - sum4) / matrix_a[i][i]
@@ -65,11 +64,12 @@ while i >= 0:
     j = i + 1
     sum5 = 0
     while j <= n:
-        sum5 = matrix_a[i][j] * matrix_b[j]
+        sum5 += matrix_a[i][j] * matrix_b[j]
         j += 1
     matrix_b[i] = matrix_b[i] - sum5
     i -= 1
 
-print(matrix_b)
 for z in matrix_a:
     print(z)
+
+print(matrix_b)
